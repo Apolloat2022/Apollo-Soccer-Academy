@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -54,6 +53,7 @@
         .logo {
             display: flex;
             align-items: center;
+            white-space: nowrap; /* Prevents logo from wrapping */
         }
         
         .logo h1 {
@@ -120,6 +120,34 @@
             display: none;
             font-size: 1.5rem;
             cursor: pointer;
+        }
+        
+        /* Chat Button */
+        .chat-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--secondary);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            z-index: 1000;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        
+        .chat-button:hover {
+            transform: scale(1.1);
+            background: #e56700;
+        }
+        
+        .chat-button i {
+            font-size: 1.5rem;
         }
         
         /* Hero Section */
@@ -532,6 +560,10 @@
             .hero p {
                 font-size: 1rem;
             }
+            
+            .logo h1 {
+                font-size: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -548,30 +580,35 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Training</a></li>
-                    <li><a href="#">Courses</a></li>
-                    <li><a href="#">Nutrition & Fitness</a></li>
-                    <li><a href="#">Accessories</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">News & Updates</a></li>
-                    <li><a href="#" class="btn">Book Online</a></li>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#training">Training</a></li>
+                    <li><a href="#courses">Courses</a></li>
+                    <li><a href="#nutrition">Nutrition & Fitness</a></li>
+                    <li><a href="#accessories">Accessories</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#news">News & Updates</a></li>
+                    <li><a href="#book" class="btn">Book Online</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
+    <!-- Chat Button -->
+    <a href="https://app.vectorshift.ai/chatbots/deployed/68f04d88f745f8e4d62d26c0" class="chat-button" target="_blank">
+        <i class="fas fa-comment"></i>
+    </a>
+
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero" id="home">
         <div class="container">
             <h2>APOLLO SOCCER ACADEMY WELCOMES YOU</h2>
             <p>Expand Your Horizons</p>
-            <a href="#" class="btn">Join Now</a>
+            <a href="#book" class="btn">Join Now</a>
         </div>
     </section>
 
     <!-- Services Section -->
-    <section class="services">
+    <section class="services" id="training">
         <div class="container">
             <div class="section-title">
                 <h2>Our Services</h2>
@@ -588,8 +625,8 @@
                         </div>
                         <p>Perfect for beginners looking to learn the fundamentals of soccer in a fun, supportive environment.</p>
                         <div class="service-actions">
-                            <a href="#" class="btn">Book Now</a>
-                            <a href="#" class="btn btn-outline">Explore Plans</a>
+                            <a href="#book" class="btn">Book Now</a>
+                            <a href="#courses" class="btn btn-outline">Explore Plans</a>
                         </div>
                     </div>
                 </div>
@@ -604,8 +641,8 @@
                         </div>
                         <p>For players with some experience who want to improve their skills and tactical understanding.</p>
                         <div class="service-actions">
-                            <a href="#" class="btn">Book Now</a>
-                            <a href="#" class="btn btn-outline">Explore Plans</a>
+                            <a href="#book" class="btn">Book Now</a>
+                            <a href="#courses" class="btn btn-outline">Explore Plans</a>
                         </div>
                     </div>
                 </div>
@@ -620,8 +657,8 @@
                         </div>
                         <p>For serious players aiming to compete at higher levels with intensive training and coaching.</p>
                         <div class="service-actions">
-                            <a href="#" class="btn">Book Now</a>
-                            <a href="#" class="btn btn-outline">Explore Plans</a>
+                            <a href="#book" class="btn">Book Now</a>
+                            <a href="#courses" class="btn btn-outline">Explore Plans</a>
                         </div>
                     </div>
                 </div>
@@ -638,7 +675,7 @@
     </section>
 
     <!-- About Section -->
-    <section class="about">
+    <section class="about" id="about">
         <div class="container">
             <div class="about-content">
                 <div class="about-text">
@@ -646,7 +683,7 @@
                     <h3>Our Story</h3>
                     <p>Welcome to Apollo Soccer Academy, the newest soccer academy in the Prosper and Celina area! Our story is just beginning, but we already want to provide young players with the best possible environment to learn, grow and succeed.</p>
                     <p>Our journey began with a simple idea: that every child should have the opportunity to receive high quality soccer training in a supportive and positive environment. With this in mind, we set out to create a football academy unlike any other - an academy focused on player development, character building and fun.</p>
-                    <a href="#" class="btn">Learn More</a>
+                    <a href="#about" class="btn">Learn More</a>
                 </div>
                 <div class="about-image">
                     <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1293&q=80" alt="Girls During Soccer Practice">
@@ -656,7 +693,7 @@
     </section>
 
     <!-- Media Section -->
-    <section class="media">
+    <section class="media" id="news">
         <div class="container">
             <div class="section-title">
                 <h2>MEDIA ROOM</h2>
@@ -664,38 +701,38 @@
             </div>
             <div class="media-grid">
                 <div class="media-item">
-                    <img src="https://images.unsplash.com/photo-1529900748604-07564a03e7a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Goalie">
+                    <img src="https://images.unsplash.com/photo-1529900748604-07564a03e7a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Goalie">
                 </div>
                 <div class="media-item">
-                    <img src="https://images.unsplash.com/photo-1575361204480-aadea25e6e68?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Soccer">
+                    <img src="https://images.unsplash.com/photo-1575361204480-aadea25e6e68?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Soccer">
                 </div>
                 <div class="media-item">
-                  <img src="Apollosoccer.jpg" alt="Apollo Soccer">
+                 <img src="Apollosoccer.jpg" alt="Apollo Soccer">
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Coach Section -->
-    <section class="coach">
+    <section class="coach" id="courses">
         <div class="container">
             <div class="coach-content">
                 <div class="coach-image">
-                    <img src="https://images.unsplash.com/photo-1599058917765-a780eda07a3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80" alt="Soccer Coach">
+                    <img src="https://images.unsplash.com/photo-1599058917765-a780eda07a3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Soccer Coach">
                 </div>
                 <div class="coach-text">
                     <h2>APOLLO SOCCER ACADEMY INSTRUCTOR SPOTLIGHT</h2>
                     <p>Meet our unique soccer coach with extensive experience.</p>
                     <p>We are pleased to introduce you to our unique soccer coach who brings a wealth of knowledge and experience to the industry. With a high school and college soccer background, the coach has a deep understanding of the game and its intricacies.</p>
                     <p>Having closely followed prestigious soccer tournaments such as the World Cup and other matches, our coach knows the latest trends and strategies in the sport. This ensures that our training is dynamic, relevant and adapted to the ever-evolving nature of soccer.</p>
-                    <a href="#" class="btn">Meet Our Coaches</a>
+                    <a href="#contact" class="btn">Meet Our Coaches</a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Tips Section -->
-    <section class="tips">
+    <section class="tips" id="nutrition">
         <div class="container">
             <div class="section-title">
                 <h2>10 ESSENTIAL TIPS FOR BEGINNERS</h2>
@@ -733,13 +770,13 @@
                 </div>
             </div>
             <div style="text-align: center; margin-top: 30px;">
-                <a href="#" class="btn btn-outline">View All Tips</a>
+                <a href="#nutrition" class="btn btn-outline">View All Tips</a>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section class="contact">
+    <section class="contact" id="contact">
         <div class="container">
             <div class="contact-content">
                 <div class="contact-info">
@@ -827,29 +864,29 @@
                 <div class="footer-column">
                     <h3>Quick Links</h3>
                     <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Training Programs</a></li>
-                        <li><a href="#">Courses</a></li>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#training">Training Programs</a></li>
+                        <li><a href="#courses">Courses</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#contact">Contact</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-column">
                     <h3>Programs</h3>
                     <ul>
-                        <li><a href="#">Beginner Program</a></li>
-                        <li><a href="#">Intermediate Program</a></li>
-                        <li><a href="#">Advanced Program</a></li>
-                        <li><a href="#">Private Training</a></li>
-                        <li><a href="#">Team Training</a></li>
+                        <li><a href="#training">Beginner Program</a></li>
+                        <li><a href="#training">Intermediate Program</a></li>
+                        <li><a href="#training">Advanced Program</a></li>
+                        <li><a href="#training">Private Training</a></li>
+                        <li><a href="#training">Team Training</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-column">
                     <h3>Contact Info</h3>
                     <ul>
-                        <li><i class="fas fa-map-marker-alt"></i> 7511 Main Street, Suite 114, Frisco, TX 75034</li>
+                        <li><i class="fas fa-map-marker-alt"></i> 7511 Main Street, Suite 200, Frisco, TX 75034</li>
                         <li><i class="fas fa-phone"></i> (469) 616-1950</li>
                         <li><i class="fas fa-envelope"></i> Robinpandey@apollotunes.com</li>
                     </ul>
@@ -857,7 +894,7 @@
             </div>
             
             <div class="copyright">
-                <p>&copy; 2023 Apollo Soccer Academy. All Rights Reserved.</p>
+                <p>&copy; 2025 Apollo Soccer Academy. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
@@ -867,23 +904,27 @@
         document.querySelector('.mobile-menu').addEventListener('click', function() {
             document.querySelector('nav').classList.toggle('active');
         });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    document.querySelector('nav').classList.remove('active');
+                }
+            });
+        });
     </script>
 </body>
-
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
