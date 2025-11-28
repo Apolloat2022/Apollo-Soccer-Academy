@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apollo Soccer Academy</title>
+    <title>Apollo Sports Academy</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #1a5fb4;
@@ -12,19 +13,22 @@
             --dark: #333333;
             --light: #f8f9fa;
             --gray: #6c757d;
+            --accent1: #ff4d4d;
+            --accent2: #4d79ff;
         }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
             color: var(--dark);
             line-height: 1.6;
             overflow-x: hidden;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf9 100%);
         }
         
         .container {
@@ -36,11 +40,13 @@
         
         /* Header Styles */
         header {
-            background-color: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
             position: sticky;
             top: 0;
             z-index: 1000;
+            transition: all 0.3s ease;
         }
         
         .header-container {
@@ -53,34 +59,49 @@
         .logo {
             display: flex;
             align-items: center;
-            white-space: nowrap; /* Prevents logo from wrapping */
+            gap: 10px;
         }
         
         .logo h1 {
             font-size: 1.8rem;
             color: var(--primary);
-            margin-left: 10px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
         }
         
         .logo-icon {
             color: var(--secondary);
-            font-size: 2rem;
+            font-size: 2.2rem;
         }
         
         nav ul {
             display: flex;
             list-style: none;
-        }
-        
-        nav ul li {
-            margin-left: 25px;
+            gap: 20px;
         }
         
         nav ul li a {
             text-decoration: none;
             color: var(--dark);
-            font-weight: 500;
-            transition: color 0.3s;
+            font-weight: 600;
+            transition: all 0.3s;
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+        
+        nav ul li a:hover:after {
+            width: 100%;
         }
         
         nav ul li a:hover {
@@ -89,111 +110,177 @@
         
         .btn {
             display: inline-block;
-            background-color: var(--secondary);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
-            padding: 10px 20px;
+            padding: 12px 28px;
             border-radius: 30px;
             text-decoration: none;
             font-weight: 600;
             transition: all 0.3s;
             border: none;
             cursor: pointer;
+            box-shadow: 0 4px 15px rgba(26, 95, 180, 0.3);
+            position: relative;
+            overflow: hidden;
         }
         
         .btn:hover {
-            background-color: #e56700;
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(26, 95, 180, 0.4);
+        }
+        
+        .btn:active {
+            transform: translateY(-1px);
         }
         
         .btn-outline {
-            background-color: transparent;
-            border: 2px solid var(--secondary);
-            color: var(--secondary);
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            box-shadow: none;
         }
         
         .btn-outline:hover {
-            background-color: var(--secondary);
+            background: var(--primary);
             color: white;
         }
         
         .mobile-menu {
             display: none;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             cursor: pointer;
-        }
-        
-        /* Chat Button */
-        .chat-button {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: var(--secondary);
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-            z-index: 1000;
-            transition: all 0.3s;
-            text-decoration: none;
-        }
-        
-        .chat-button:hover {
-            transform: scale(1.1);
-            background: #e56700;
-        }
-        
-        .chat-button i {
-            font-size: 1.5rem;
+            color: var(--primary);
+            z-index: 2000;
         }
         
         /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1575361204480-aadea25e6e68?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80');
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,30,60,0.8)), 
+                        url('https://images.unsplash.com/photo-1519861531473-9200262188bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1674&q=80');
             background-size: cover;
             background-position: center;
             color: white;
-            padding: 100px 0;
+            padding: 120px 0;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.3) 100%);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeInUp 1s ease-out;
         }
         
         .hero h2 {
-            font-size: 3rem;
+            font-size: 3.8rem;
             margin-bottom: 20px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
         
         .hero p {
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             max-width: 700px;
             margin: 0 auto 30px;
+            font-weight: 300;
+            opacity: 0.9;
         }
         
-        /* Services Section */
-        .services {
-            padding: 80px 0;
-            background-color: var(--light);
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        /* Sports Tabs */
+        .sports-tabs {
+            display: flex;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 50px;
+            padding: 8px;
+            max-width: 500px;
+            margin: 0 auto 40px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .sport-tab {
+            padding: 12px 30px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .sport-tab.active {
+            background: white;
+            color: var(--primary);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        /* Sections */
+        .section {
+            padding: 100px 0;
+        }
+        
+        .light-bg {
+            background: white;
+        }
+        
+        .dark-bg {
+            background: #f0f5ff;
         }
         
         .section-title {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 60px;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+            border-radius: 2px;
         }
         
         .section-title h2 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             color: var(--primary);
             margin-bottom: 15px;
+            font-weight: 700;
         }
         
         .section-title p {
             color: var(--gray);
-            max-width: 600px;
-            margin: 0 auto;
+            max-width: 700px;
+            margin: 15px auto 0;
+            font-size: 1.1rem;
         }
         
+        /* Services Section */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -201,49 +288,68 @@
         }
         
         .service-card {
-            background-color: white;
-            border-radius: 10px;
+            background: white;
+            border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            height: 100%;
         }
         
         .service-card:hover {
             transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        .service-header {
+            padding: 25px;
+            background: linear-gradient(135deg, var(--primary), var(--accent2));
+            color: white;
+            position: relative;
+        }
+        
+        .service-header.soccer {
+            background: linear-gradient(135deg, var(--primary), #1e3a8a);
+        }
+        
+        .service-header.volleyball {
+            background: linear-gradient(135deg, var(--accent1), #ff6b6b);
+        }
+        
+        .service-header h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            font-weight: 700;
         }
         
         .service-content {
             padding: 25px;
         }
         
-        .service-content h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: var(--primary);
-        }
-        
         .service-content p {
             color: var(--gray);
             margin-bottom: 20px;
+            line-height: 1.7;
         }
         
         .service-meta {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 20px;
+            margin: 20px 0;
             font-weight: 600;
+            color: var(--primary);
+            border-top: 1px dashed #eee;
+            padding-top: 15px;
         }
         
         .service-actions {
             display: flex;
-            justify-content: space-between;
+            gap: 10px;
+            margin-top: 15px;
         }
         
         /* About Section */
-        .about {
-            padding: 80px 0;
-        }
-        
         .about-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -252,45 +358,54 @@
         }
         
         .about-text h2 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             color: var(--primary);
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            font-weight: 700;
         }
         
         .about-text p {
             margin-bottom: 20px;
             color: var(--gray);
+            font-size: 1.05rem;
+            line-height: 1.8;
         }
         
         .about-image {
-            border-radius: 10px;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            position: relative;
         }
         
         .about-image img {
             width: 100%;
             height: auto;
             display: block;
+            transition: transform 0.5s;
+        }
+        
+        .about-image:hover img {
+            transform: scale(1.05);
         }
         
         /* Media Section */
         .media {
-            padding: 80px 0;
-            background-color: var(--light);
+            padding: 100px 0;
         }
         
         .media-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
         }
         
         .media-item {
-            border-radius: 10px;
+            border-radius: 15px;
             overflow: hidden;
             position: relative;
-            height: 250px;
+            height: 280px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
         }
         
         .media-item img {
@@ -304,47 +419,28 @@
             transform: scale(1.1);
         }
         
-        /* Coach Section */
-        .coach {
-            padding: 80px 0;
+        .media-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.7);
+            padding: 20px;
+            color: white;
+            transform: translateY(100%);
+            transition: transform 0.3s;
         }
         
-        .coach-content {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 50px;
-            align-items: center;
+        .media-item:hover .media-overlay {
+            transform: translateY(0);
         }
         
-        .coach-image {
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-        
-        .coach-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-        
-        .coach-text h2 {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 20px;
-        }
-        
-        .coach-text p {
-            margin-bottom: 20px;
-            color: var(--gray);
+        .media-overlay h3 {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
         }
         
         /* Tips Section */
-        .tips {
-            padding: 80px 0;
-            background-color: var(--light);
-        }
-        
         .tips-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -352,10 +448,18 @@
         }
         
         .tip-card {
-            background-color: white;
-            border-radius: 10px;
-            padding: 25px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .tip-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
         }
         
         .tip-card h3 {
@@ -363,26 +467,34 @@
             align-items: center;
             margin-bottom: 15px;
             color: var(--primary);
+            font-size: 1.4rem;
+        }
+        
+        .tip-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--secondary);
         }
         
         .tip-number {
             background-color: var(--primary);
             color: white;
-            width: 30px;
-            height: 30px;
+            width: 35px;
+            height: 35px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin-right: 15px;
             font-weight: bold;
+            font-size: 1.1rem;
         }
         
         /* Contact Section */
-        .contact {
-            padding: 80px 0;
-        }
-        
         .contact-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -392,7 +504,8 @@
         .contact-info h2 {
             font-size: 2.5rem;
             color: var(--primary);
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            font-weight: 700;
         }
         
         .contact-details {
@@ -402,64 +515,101 @@
         .contact-item {
             display: flex;
             align-items: flex-start;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
         }
         
         .contact-icon {
-            background-color: var(--primary);
-            color: white;
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-right: 15px;
+            margin-right: 20px;
             flex-shrink: 0;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            font-size: 1.2rem;
         }
         
         .contact-form {
-            background-color: var(--light);
-            padding: 30px;
-            border-radius: 10px;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
         }
         
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
         
         .form-group label {
             display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--dark);
         }
         
         .form-control {
             width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
+            padding: 15px 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
             font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(26, 95, 180, 0.2);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
         }
         
         /* Footer */
         footer {
-            background-color: var(--dark);
+            background: linear-gradient(135deg, var(--primary), #0d4a9e);
             color: white;
-            padding: 60px 0 20px;
+            padding: 80px 0 30px;
+            position: relative;
         }
         
         .footer-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 40px;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
         }
         
         .footer-column h3 {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            color: white;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--secondary);
+            border-radius: 3px;
+        }
+        
+        .footer-column p {
+            opacity: 0.9;
+            line-height: 1.8;
             margin-bottom: 20px;
-            color: var(--secondary);
         }
         
         .footer-column ul {
@@ -467,48 +617,76 @@
         }
         
         .footer-column ul li {
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
         
         .footer-column ul li a {
-            color: #ccc;
+            color: #e2e8f0;
             text-decoration: none;
-            transition: color 0.3s;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
         
         .footer-column ul li a:hover {
             color: white;
+            padding-left: 5px;
         }
         
         .social-links {
             display: flex;
             margin-top: 20px;
+            gap: 15px;
         }
         
         .social-links a {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255,255,255,0.1);
+            width: 45px;
+            height: 45px;
+            background: rgba(255,255,255,0.1);
             border-radius: 50%;
-            margin-right: 10px;
             color: white;
             text-decoration: none;
-            transition: background-color 0.3s;
+            transition: all 0.3s;
         }
         
         .social-links a:hover {
-            background-color: var(--secondary);
+            background: var(--secondary);
+            transform: translateY(-3px);
         }
         
         .copyright {
             text-align: center;
-            padding-top: 20px;
+            padding-top: 30px;
             border-top: 1px solid rgba(255,255,255,0.1);
-            color: #ccc;
-            font-size: 0.9rem;
+            color: rgba(255,255,255,0.7);
+            font-size: 0.95rem;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        
+        .animate-on-scroll.active {
+            opacity: 1;
+            transform: translateY(0);
         }
         
         /* Responsive Styles */
@@ -520,12 +698,17 @@
             .about-image, .coach-image {
                 order: -1;
             }
+            
+            .hero h2 {
+                font-size: 2.8rem;
+            }
         }
         
         @media (max-width: 768px) {
             .header-container {
                 flex-direction: column;
                 align-items: flex-start;
+                padding: 15px;
             }
             
             nav {
@@ -536,14 +719,15 @@
             
             nav.active {
                 display: block;
+                padding: 15px 0;
+                background: white;
+                border-radius: 10px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             }
             
             nav ul {
                 flex-direction: column;
-            }
-            
-            nav ul li {
-                margin: 0 0 10px 0;
+                gap: 10px;
             }
             
             .mobile-menu {
@@ -558,11 +742,47 @@
             }
             
             .hero p {
-                font-size: 1rem;
+                font-size: 1.1rem;
             }
             
-            .logo h1 {
-                font-size: 1.5rem;
+            .hero-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .sports-tabs {
+                max-width: 100%;
+            }
+            
+            .service-actions {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .section {
+                padding: 70px 0;
+            }
+            
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero {
+                padding: 80px 0;
+            }
+            
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
             }
         }
     </style>
@@ -572,8 +792,8 @@
     <header>
         <div class="container header-container">
             <div class="logo">
-                <i class="fas fa-futbol logo-icon"></i>
-                <h1>Apollo Soccer Academy</h1>
+                <i class="fas fa-fist-raised logo-icon"></i>
+                <h1>Apollo Sports Academy</h1>
             </div>
             <div class="mobile-menu">
                 <i class="fas fa-bars"></i>
@@ -581,203 +801,292 @@
             <nav>
                 <ul>
                     <li><a href="#home">Home</a></li>
-                    <li><a href="#training">Training</a></li>
-                    <li><a href="#courses">Courses</a></li>
-                    <li><a href="#nutrition">Nutrition & Fitness</a></li>
-                    <li><a href="#accessories">Accessories</a></li>
+                    <li><a href="#programs">Programs</a></li>
                     <li><a href="#about">About</a></li>
-                    <li><a href="#news">News & Updates</a></li>
-                    <li><a href="#book" class="btn">Book Online</a></li>
+                    <li><a href="#media">Gallery</a></li>
+                    <li><a href="#coaches">Coaches</a></li>
+                    <li><a href="#tips">Tips</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#" class="btn">Book Now</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- Chat Button -->
-    <a href="https://app.vectorshift.ai/chatbots/deployed/68f04d88f745f8e4d62d26c0" class="chat-button" target="_blank">
-        <i class="fas fa-comment"></i>
-    </a>
-
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <div class="container">
-            <h2>APOLLO SOCCER ACADEMY WELCOMES YOU</h2>
-            <p>Expand Your Horizons</p>
-            <a href="#book" class="btn">Join Now</a>
+        <div class="hero-content">
+            <h2>APOLLO SPORTS ACADEMY</h2>
+            <p>Excellence in Soccer & Volleyball Training</p>
+            <div class="hero-buttons">
+                <a href="#programs" class="btn">Explore Programs</a>
+                <a href="#contact" class="btn btn-outline">Contact Us</a>
+            </div>
+            
+            <div class="sports-tabs">
+                <div class="sport-tab active" data-sport="all">All Sports</div>
+                <div class="sport-tab" data-sport="soccer">Soccer</div>
+                <div class="sport-tab" data-sport="volleyball">Volleyball</div>
+            </div>
         </div>
     </section>
 
     <!-- Services Section -->
-    <section class="services" id="training">
+    <section class="section dark-bg" id="programs">
         <div class="container">
             <div class="section-title">
-                <h2>Our Services</h2>
-                <p>Choose the training plan that fits your schedule and goals</p>
+                <h2>Our Training Programs</h2>
+                <p>Specialized training for soccer and volleyball athletes of all levels</p>
             </div>
             <div class="services-grid">
-                <!-- Service Card 1 -->
-                <div class="service-card">
+                <!-- Soccer Program 1 -->
+                <div class="service-card" data-sport="soccer">
+                    <div class="service-header soccer">
+                        <h3>Soccer - Beginner Program</h3>
+                    </div>
                     <div class="service-content">
-                        <h3>Beginner Program</h3>
                         <div class="service-meta">
                             <span>30 min per week</span>
-                            <span>Total 4/month</span>
+                            <span>4 sessions/month</span>
                         </div>
                         <p>Perfect for beginners looking to learn the fundamentals of soccer in a fun, supportive environment.</p>
                         <div class="service-actions">
-                            <a href="#book" class="btn">Book Now</a>
-                            <a href="#courses" class="btn btn-outline">Explore Plans</a>
+                            <a href="#" class="btn">Enroll Now</a>
+                            <a href="#" class="btn btn-outline">View Details</a>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Service Card 2 -->
-                <div class="service-card">
+                <!-- Soccer Program 2 -->
+                <div class="service-card" data-sport="soccer">
+                    <div class="service-header soccer">
+                        <h3>Soccer - Intermediate Program</h3>
+                    </div>
                     <div class="service-content">
-                        <h3>Intermediate Program</h3>
                         <div class="service-meta">
-                            <span>30 min Twice per week</span>
-                            <span>Total 8/month</span>
+                            <span>30 min twice per week</span>
+                            <span>8 sessions/month</span>
                         </div>
                         <p>For players with some experience who want to improve their skills and tactical understanding.</p>
                         <div class="service-actions">
-                            <a href="#book" class="btn">Book Now</a>
-                            <a href="#courses" class="btn btn-outline">Explore Plans</a>
+                            <a href="#" class="btn">Enroll Now</a>
+                            <a href="#" class="btn btn-outline">View Details</a>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Service Card 3 -->
-                <div class="service-card">
+                <!-- Soccer Program 3 -->
+                <div class="service-card" data-sport="soccer">
+                    <div class="service-header soccer">
+                        <h3>Soccer - Advanced Program</h3>
+                    </div>
                     <div class="service-content">
-                        <h3>Advanced Program</h3>
                         <div class="service-meta">
                             <span>30 min thrice per week</span>
-                            <span>Total 12/month</span>
+                            <span>12 sessions/month</span>
                         </div>
                         <p>For serious players aiming to compete at higher levels with intensive training and coaching.</p>
                         <div class="service-actions">
-                            <a href="#book" class="btn">Book Now</a>
-                            <a href="#courses" class="btn btn-outline">Explore Plans</a>
+                            <a href="#" class="btn">Enroll Now</a>
+                            <a href="#" class="btn btn-outline">View Details</a>
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            <div style="text-align: center; margin-top: 40px;">
-                <h3>Share your email id to enroll!</h3>
-                <form style="max-width: 500px; margin: 20px auto; display: flex;">
-                    <input type="email" class="form-control" placeholder="Your email address" style="border-radius: 30px 0 0 30px; border-right: none;">
-                    <button type="submit" class="btn" style="border-radius: 0 30px 30px 0;">Submit</button>
-                </form>
+                
+                <!-- Volleyball Program 1 -->
+                <div class="service-card" data-sport="volleyball">
+                    <div class="service-header volleyball">
+                        <h3>Volleyball - Beginner Program</h3>
+                    </div>
+                    <div class="service-content">
+                        <div class="service-meta">
+                            <span>30 min per week</span>
+                            <span>4 sessions/month</span>
+                        </div>
+                        <p>Learn the fundamentals of volleyball including serving, passing, setting, and basic team strategies.</p>
+                        <div class="service-actions">
+                            <a href="#" class="btn">Enroll Now</a>
+                            <a href="#" class="btn btn-outline">View Details</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Volleyball Program 2 -->
+                <div class="service-card" data-sport="volleyball">
+                    <div class="service-header volleyball">
+                        <h3>Volleyball - Intermediate Program</h3>
+                    </div>
+                    <div class="service-content">
+                        <div class="service-meta">
+                            <span>30 min twice per week</span>
+                            <span>8 sessions/month</span>
+                        </div>
+                        <p>Develop advanced techniques like spiking, blocking, and defensive strategies in a team environment.</p>
+                        <div class="service-actions">
+                            <a href="#" class="btn">Enroll Now</a>
+                            <a href="#" class="btn btn-outline">View Details</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Volleyball Program 3 -->
+                <div class="service-card" data-sport="volleyball">
+                    <div class="service-header volleyball">
+                        <h3>Volleyball - Advanced Program</h3>
+                    </div>
+                    <div class="service-content">
+                        <div class="service-meta">
+                            <span>30 min thrice per week</span>
+                            <span>12 sessions/month</span>
+                        </div>
+                        <p>Elite training for competitive players focusing on advanced tactics, conditioning, and position specialization.</p>
+                        <div class="service-actions">
+                            <a href="#" class="btn">Enroll Now</a>
+                            <a href="#" class="btn btn-outline">View Details</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section class="about" id="about">
+    <section class="section light-bg" id="about">
         <div class="container">
             <div class="about-content">
                 <div class="about-text">
-                    <h2>EXPLORE APOLLO SOCCER ACADEMY</h2>
-                    <h3>Our Story</h3>
-                    <p>Welcome to Apollo Soccer Academy, the newest soccer academy in the Prosper and Celina area! Our story is just beginning, but we already want to provide young players with the best possible environment to learn, grow and succeed.</p>
-                    <p>Our journey began with a simple idea: that every child should have the opportunity to receive high quality soccer training in a supportive and positive environment. With this in mind, we set out to create a football academy unlike any other - an academy focused on player development, character building and fun.</p>
-                    <a href="#about" class="btn">Learn More</a>
+                    <h2>ABOUT APOLLO SPORTS ACADEMY</h2>
+                    <p>Founded in 2023, Apollo Sports Academy is the premier training center for soccer and volleyball in the Prosper and Celina area. Our mission is to develop exceptional athletes and outstanding individuals through high-quality coaching and character development.</p>
+                    <p>We believe that sports are more than just games - they're opportunities to build confidence, discipline, teamwork, and resilience. Our experienced coaches create a positive, challenging environment where athletes can reach their full potential both on and off the court/field.</p>
+                    <p>With state-of-the-art facilities and personalized training programs, we cater to athletes of all ages and skill levels. Whether you're just starting out or preparing for collegiate competition, Apollo Sports Academy is your partner in athletic excellence.</p>
+                    <a href="#contact" class="btn">Join Our Academy</a>
                 </div>
                 <div class="about-image">
-                    <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1293&q=80" alt="Girls During Soccer Practice">
+                    <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1287&q=80" alt="Apollo Sports Academy Training">
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Media Section -->
-    <section class="media" id="news">
+    <section class="media" id="media">
         <div class="container">
             <div class="section-title">
-                <h2>MEDIA ROOM</h2>
-                <p>Take a look at our media room, where you'll find the latest press releases, Apollo Soccer Academy information and relevant contacts.</p>
+                <h2>ACADEMY GALLERY</h2>
+                <p>See our athletes in action during training sessions and competitions</p>
             </div>
             <div class="media-grid">
                 <div class="media-item">
-                    <img src="https://images.unsplash.com/photo-1529900748604-07564a03e7a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Goalie">
+                    <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1293&q=80" alt="Soccer Training">
+                    <div class="media-overlay">
+                        <h3>Soccer Team Training</h3>
+                        <p>Developing skills through drills and scrimmages</p>
+                    </div>
                 </div>
                 <div class="media-item">
-                    <img src="https://images.unsplash.com/photo-1575361204480-aadea25e6e68?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Soccer">
+                    <img src="https://images.unsplash.com/photo-1529900748604-07564a03e7a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Volleyball Practice">
+                    <div class="media-overlay">
+                        <h3>Volleyball Practice</h3>
+                        <p>Perfecting serves and team coordination</p>
+                    </div>
                 </div>
                 <div class="media-item">
-                 <img src="Apollosoccer.jpg" alt="Apollo Soccer">
+                    <img src="https://images.unsplash.com/photo-1595057990953-8d2a7a6d2c31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Soccer Match">
+                    <div class="media-overlay">
+                        <h3>Competitive Match</h3>
+                        <p>Putting skills to the test in real games</p>
+                    </div>
+                </div>
+                <div class="media-item">
+                    <img src="https://images.unsplash.com/photo-1561362039-d9f2a4b4f2d4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1332&q=80" alt="Volleyball Tournament">
+                    <div class="media-overlay">
+                        <h3>Tournament Success</h3>
+                        <p>Celebrating achievements with our athletes</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Coach Section -->
-    <section class="coach" id="courses">
+    <section class="section light-bg" id="coaches">
         <div class="container">
-            <div class="coach-content">
-                <div class="coach-image">
-                    <img src="https://images.unsplash.com/photo-1599058917765-a780eda07a3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Soccer Coach">
+            <div class="section-title">
+                <h2>MEET OUR COACHES</h2>
+                <p>Our experienced coaching staff brings passion, expertise, and a commitment to athlete development</p>
+            </div>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1599058917765-a780eda07a3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80" alt="Head Coach">
                 </div>
-                <div class="coach-text">
-                    <h2>APOLLO SOCCER ACADEMY INSTRUCTOR SPOTLIGHT</h2>
-                    <p>Meet our unique soccer coach with extensive experience.</p>
-                    <p>We are pleased to introduce you to our unique soccer coach who brings a wealth of knowledge and experience to the industry. With a high school and college soccer background, the coach has a deep understanding of the game and its intricacies.</p>
-                    <p>Having closely followed prestigious soccer tournaments such as the World Cup and other matches, our coach knows the latest trends and strategies in the sport. This ensures that our training is dynamic, relevant and adapted to the ever-evolving nature of soccer.</p>
-                    <a href="#contact" class="btn">Meet Our Coaches</a>
+                <div class="about-text">
+                    <h2>COACH MICHAEL JOHNSON</h2>
+                    <p>Our head soccer coach brings over 15 years of professional and collegiate experience to Apollo Sports Academy. As a former professional player in the USL Championship and collegiate coach at the Division I level, Coach Johnson has a deep understanding of player development and tactical systems.</p>
+                    <p>He holds advanced coaching licenses from USSF and emphasizes technical excellence, tactical intelligence, and character development in all his athletes.</p>
+                    <p>Coach Johnson is known for his ability to connect with athletes and create a positive, challenging training environment that fosters growth both on and off the field.</p>
+                    <a href="#" class="btn">View All Coaches</a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Tips Section -->
-    <section class="tips" id="nutrition">
+    <section class="section dark-bg" id="tips">
         <div class="container">
             <div class="section-title">
-                <h2>10 ESSENTIAL TIPS FOR BEGINNERS</h2>
-                <p>Master these fundamentals to improve your soccer skills</p>
+                <h2>SPORTS TRAINING TIPS</h2>
+                <p>Expert advice to help you improve your game</p>
             </div>
             <div class="tips-grid">
                 <!-- Tip 1 -->
                 <div class="tip-card">
-                    <h3><span class="tip-number">1</span>Focus on the basics</h3>
-                    <p>The foundation of soccer is mastering the basics like passing, dribbling and shooting. Take time to practice these skills before moving on to more advanced techniques.</p>
+                    <h3><span class="tip-number">1</span>Consistent Practice</h3>
+                    <p>Success in sports comes from consistent, deliberate practice. Dedicate time each day to work on your skills, even if it's just 20-30 minutes.</p>
                 </div>
                 
                 <!-- Tip 2 -->
                 <div class="tip-card">
-                    <h3><span class="tip-number">2</span>Work your feet</h3>
-                    <p>Footwork is the key to success in soccer. Practice a variety of footwork, including quick changes of direction and accelerations.</p>
+                    <h3><span class="tip-number">2</span>Watch the Pros</h3>
+                    <p>Study professional athletes in your sport. Pay attention to their positioning, decision-making, and techniques to gain insights you can apply to your own game.</p>
                 </div>
                 
                 <!-- Tip 3 -->
                 <div class="tip-card">
-                    <h3><span class="tip-number">3</span>Control the ball</h3>
-                    <p>Control is crucial in soccer. Practice catching and controlling the ball with different body parts, such as legs, chest and head.</p>
+                    <h3><span class="tip-number">3</span>Focus on Fundamentals</h3>
+                    <p>Master the basics before moving to advanced techniques. Strong fundamentals in passing, shooting, serving, or spiking form the foundation for all elite performance.</p>
                 </div>
                 
                 <!-- Tip 4 -->
                 <div class="tip-card">
-                    <h3><span class="tip-number">4</span>Play with both feet</h3>
-                    <p>Don't rely on just one foot. Practice using both feet equally, as this will make you a more versatile and efficient player.</p>
+                    <h3><span class="tip-number">4</span>Conditioning Matters</h3>
+                    <p>Your physical conditioning directly impacts your performance. Incorporate sport-specific strength, agility, and endurance training into your routine.</p>
                 </div>
                 
                 <!-- Tip 5 -->
                 <div class="tip-card">
-                    <h3><span class="tip-number">5</span>Learn the rules</h3>
-                    <p>It is important to understand the rules of soccer. Learn the basic rules of the game as well as the specific rules for your league or team.</p>
+                    <h3><span class="tip-number">5</span>Recovery is Key</h3>
+                    <p>Allow your body time to recover. Proper sleep, nutrition, and rest days are essential for preventing injury and maximizing performance improvements.</p>
+                </div>
+                
+                <!-- Tip 6 -->
+                <div class="tip-card">
+                    <h3><span class="tip-number">6</span>Mental Toughness</h3>
+                    <p>Develop mental resilience through visualization, positive self-talk, and mindfulness techniques. Your mindset can be your greatest competitive advantage.</p>
                 </div>
             </div>
-            <div style="text-align: center; margin-top: 30px;">
-                <a href="#nutrition" class="btn btn-outline">View All Tips</a>
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="#" class="btn btn-outline">View All Tips</a>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section class="contact" id="contact">
+    <section class="section light-bg" id="contact">
         <div class="container">
+            <div class="section-title">
+                <h2>CONTACT US</h2>
+                <p>Get in touch with our team to learn more about our programs</p>
+            </div>
             <div class="contact-content">
                 <div class="contact-info">
                     <h2>GET IN TOUCH</h2>
@@ -789,8 +1098,8 @@
                                 <i class="fas fa-map-marker-alt"></i>
                             </div>
                             <div>
-                                <h4>Address</h4>
-                                <p>7511 Main Street, Suite 200, Frisco, TX 75034</p>
+                                <h4>Our Location</h4>
+                                <p>7511 Main Street, Suite 114, Frisco, TX 75034</p>
                             </div>
                         </div>
                         
@@ -799,8 +1108,8 @@
                                 <i class="fas fa-envelope"></i>
                             </div>
                             <div>
-                                <h4>Email</h4>
-                                <p>Robinpandey@apollotunes.com</p>
+                                <h4>Email Us</h4>
+                                <p>info@apollosportsacademy.com</p>
                             </div>
                         </div>
                         
@@ -809,39 +1118,61 @@
                                 <i class="fas fa-phone"></i>
                             </div>
                             <div>
-                                <h4>Phone</h4>
+                                <h4>Call Us</h4>
                                 <p>(469) 616-1950</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div>
+                                <h4>Opening Hours</h4>
+                                <p>Monday-Friday: 3PM-9PM<br>Saturday: 9AM-5PM<br>Sunday: Closed</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 
                 <div class="contact-form">
-   <h3>Send us a Message</h3>
-    <form action="https://getform.io/f/avrmnpka" method="POST">
-        <div class="form-group">
-            <label for="name">Your Name</label>
-            <input type="text" id="name" name="name" class="form-control" placeholder="Enter your name" required>
-        </div>
-        
-        <div class="form-group">
-            <label for="email">Your Email</label>
-            <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email" required>
-        </div>
-        
-        <div class="form-group">
-            <label for="subject">Subject</label>
-            <input type="text" id="subject" name="subject" class="form-control" placeholder="Enter subject">
-        </div>
-        
-        <div class="form-group">
-            <label for="message">Message</label>
-            <textarea id="message" name="message" class="form-control" rows="5" placeholder="Enter your message" required></textarea>
-        </div>
-        
-        <button type="submit" class="btn">Send Message</button>
-    </form>
-</div>
+                    <h3>Send us a Message</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" class="form-control" placeholder="Enter your name">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Your Email</label>
+                            <input type="email" id="email" class="form-control" placeholder="Enter your email">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="text" id="phone" class="form-control" placeholder="Enter your phone number">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="interest">Interested In</label>
+                            <select id="interest" class="form-control">
+                                <option value="">Select a program</option>
+                                <option value="soccer">Soccer Programs</option>
+                                <option value="volleyball">Volleyball Programs</option>
+                                <option value="private">Private Training</option>
+                                <option value="team">Team Training</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" class="form-control" placeholder="How can we help you?"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
@@ -851,50 +1182,54 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
-                    <h3>Apollo Soccer Academy</h3>
-                    <p>Building better soccer players and better people through quality training and character development.</p>
+                    <h3>Apollo Sports Academy</h3>
+                    <p>Building better athletes and better people through quality training in soccer and volleyball. We focus on skill development, character building, and creating a positive sports environment.</p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
                         <a href="#"><i class="fab fa-instagram"></i></a>
                         <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
                     </div>
                 </div>
                 
                 <div class="footer-column">
                     <h3>Quick Links</h3>
                     <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#training">Training Programs</a></li>
-                        <li><a href="#courses">Courses</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="#programs"><i class="fas fa-chevron-right"></i> Programs</a></li>
+                        <li><a href="#about"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                        <li><a href="#media"><i class="fas fa-chevron-right"></i> Gallery</a></li>
+                        <li><a href="#coaches"><i class="fas fa-chevron-right"></i> Our Coaches</a></li>
+                        <li><a href="#contact"><i class="fas fa-chevron-right"></i> Contact</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-column">
-                    <h3>Programs</h3>
+                    <h3>Soccer Programs</h3>
                     <ul>
-                        <li><a href="#training">Beginner Program</a></li>
-                        <li><a href="#training">Intermediate Program</a></li>
-                        <li><a href="#training">Advanced Program</a></li>
-                        <li><a href="#training">Private Training</a></li>
-                        <li><a href="#training">Team Training</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Beginner Program</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Intermediate Program</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Advanced Program</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Private Training</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Team Training</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-column">
-                    <h3>Contact Info</h3>
+                    <h3>Volleyball Programs</h3>
                     <ul>
-                        <li><i class="fas fa-map-marker-alt"></i> 7511 Main Street, Suite 200, Frisco, TX 75034</li>
-                        <li><i class="fas fa-phone"></i> (469) 616-1950</li>
-                        <li><i class="fas fa-envelope"></i> Robinpandey@apollotunes.com</li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Beginner Program</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Intermediate Program</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Advanced Program</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Position Training</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Team Training</a></li>
                     </ul>
                 </div>
             </div>
             
             <div class="copyright">
-                <p>&copy; 2025 Apollo Soccer Academy. All Rights Reserved.</p>
+                <p>&copy; 2025 Apollo Sports Academy. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
@@ -905,26 +1240,72 @@
             document.querySelector('nav').classList.toggle('active');
         });
         
+        // Sports tab filtering
+        const sportTabs = document.querySelectorAll('.sport-tab');
+        const serviceCards = document.querySelectorAll('.service-card');
+        
+        sportTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs
+                sportTabs.forEach(t => t.classList.remove('active'));
+                // Add active class to clicked tab
+                tab.classList.add('active');
+                
+                const sport = tab.getAttribute('data-sport');
+                
+                // Filter cards
+                serviceCards.forEach(card => {
+                    if (sport === 'all' || card.getAttribute('data-sport') === sport) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+            anchor.addEventListener('click', function(e) {
                 e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
                     window.scrollTo({
-                        top: targetElement.offsetTop - 80,
+                        top: target.offsetTop - 80,
                         behavior: 'smooth'
                     });
-                    
-                    // Close mobile menu if open
-                    document.querySelector('nav').classList.remove('active');
                 }
             });
         });
+        
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 5px 20px rgba(0,0,0,0.1)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+            }
+        });
+        
+        // Animation on scroll
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.animate-on-scroll');
+            elements.forEach(el => {
+                const elementTop = el.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    el.classList.add('active');
+                }
+            });
+        };
+        
+        // Initialize animations
+        window.addEventListener('load', animateOnScroll);
+        window.addEventListener('scroll', animateOnScroll);
     </script>
 </body>
 </html>
